@@ -3,15 +3,13 @@
   "version": "0.1.0",
   "author": "Rene Koch",
   "summary": "Puppet module for managing ovirt-guest-agent",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0",
   "source": "https://github.com/scrat14/ovirt-guest-agent",
   "project_page": "https://github.com/scrat14/ovirt-guest-agent",
   "issues_url": "https://github.com/scrat14/ovirt-guest-agent/issues",
   "description": "Install, run and configure ovirt-guest-agent.",
   "tags": [ "ovirt", "ovirt-guest-agent", "rhev", "rhev-guest-agent" ],
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
-  ],
+  "dependencies": [ ],
   "operatingsystem_support": [
     {
     "operatingsystem": "RedHat",

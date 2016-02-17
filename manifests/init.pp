@@ -45,10 +45,25 @@
 
 class ovirt_guest_agent (
 
+  $service_name    = $ovirt_guest_agent::params::service_name,
+  $service_ensure  = $ovirt_guest_agent::params::service_ensure,
+  $service_enabled = $ovirt_guest_agent::params::service_enable,
+  $package_name    = $ovirt_guest_agent::params::package_name,
+  $package_ensure  = $ovirt_guest_agent::params::package_ensure
+
 )inherits ovirt_guest_agent::params {
 
-  if $manufacturer == 'oVirt' {
-    include '::ovirt_guest_agent::service'
+  validate_string($service_name)
+  validate_string($service_ensure)
+  validate_bool($service_enabled)
+  validate_string($package_name)
+  validate_string($package_ensure)
+
+  if $::manufacturer == 'oVirt' {
+    anchor { 'ovirt_guest_agent::begin': } ->
+    class { '::ovirt_guest_agent::package': } ->
+    class { '::ovirt_guest_agent::service': } ->
+    anchor { 'ovirt_guest_agent::end': }
   }else{
     notice ('This system doesn\'t seem to run on oVirt - skipping installation')
   }

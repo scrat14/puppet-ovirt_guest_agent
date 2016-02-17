@@ -69,8 +69,8 @@ Install ovirt-guest-agent with default configuration file:
 Install rhevm-guest-agent with default configuration file:
 
     class {'::ovirt_guest_agent':
-      'service_name' => 'rhevm-guest-agent'
-      'package_name' => 'rhevm-guest-agent-common'
+      service_name => 'rhevm-guest-agent'
+      package_name => 'rhevm-guest-agent-common'
     }
 
 ## Reference

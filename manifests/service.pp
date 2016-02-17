@@ -6,23 +6,17 @@
 # requires class package to make sure that ovirt-guest-agent is installed.
 #
 
-class ovirt_guest_agent::service (
+class ovirt_guest_agent::service inherits ovirt_guest_agent {
 
-  $service_name   = $::ovirt_guest_agent::params::service_name,
-  $package_name   = $::ovirt_guest_agent::params::package_name,
-  $service_enable = $::ovirt_guest_agent::params::service_enable,
-  $service_ensure = $::ovirt_guest_agent::params::service_ensure,
+  if ! ($ovirt_guest_agent::service_ensure in [ 'running', 'stopped' ]) {
+    fail('service_ensure must be running or stopped!')
+  }
 
-)inherits ovirt_guest_agent::params {
-
-  require ovirt_guest_agent::package
-
-
-  service { $service_name:
-    ensure	  => $service_ensure,
-    enable	  => $serice_enable,
-    hasstatus => true,
-    require	  => Package[$package_name],
+  service { $ovirt_guest_agent::service_name:
+    ensure     => $ovirt_guest_agent::service_ensure,
+    enable     => $ovirt_guest_agent::service_enabled,
+    hasstatus  => true,
+    hasrestart => true,
   }
 
 }

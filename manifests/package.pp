@@ -6,15 +6,10 @@
 # required by class service.
 #
 
-class ovirt_guest_agent::package (
+class ovirt_guest_agent::package inherits ovirt_guest_agent {
 
-  $package_name   = $::ovirt_guest_agent::params::package_name,
-  $package_ensure = $::ovirt_guest_agent::params::package_ensure,
-
-)inherits ovirt_guest_agent::params {
-
-  package { $package_name:
-    ensure	  => $package_ensure,
+  package { $ovirt_guest_agent::package_name:
+    ensure => $ovirt_guest_agent::package_ensure,
   }
 
 }
