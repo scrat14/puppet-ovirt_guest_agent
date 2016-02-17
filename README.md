@@ -57,16 +57,25 @@ The following repositories are required:
     * rhel-x86_64-rhev-agent-6-server (RHN classic)
 * Red Hat Enterprise Linux 7 (rhevm-guest-agent):
     * rhel-7-server-rh-common-rpms (subscription-manager)
+* Debian 8:
+    * available in jessie repository, but see limitations!
+* Debian 7:
+    * http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/
 
 ### Beginning with ovirt_guest_agent
 
-Install ovirt-guest-agent with default configuration file:
+include '::ovirt_guest_agent' will install the guest agent and enable it.
 
     class {'::ovirt_guest_agent': }
 
 ## Usage
 
-Install rhevm-guest-agent with default configuration file:
+Install ovirt-guest-agent with default configuration file:
+
+    class {'::ovirt_guest_agent': }
+
+Install rhevm-guest-agent instead of ovirt-guest-agent with default 
+configuration file:
 
     class {'::ovirt_guest_agent':
       service_name => 'rhevm-guest-agent'
@@ -75,9 +84,53 @@ Install rhevm-guest-agent with default configuration file:
 
 ## Reference
 
+### Classes
+
+    * ovirt_guest_agent: This is the main class which includes all other classes.
+    * ovirt_guest_agent::service: Starts/stops and enables/disables ovirt-guest-agent daemon.
+    * ovirt_guest_agent::package: Installs/uninstalls ovirt-guest-agent package.
+
+### Paramaters
+
+The following parameters are available in ::ovirt_guest_agent class:
+
+    * service_name
+Name of the ovirt-guest-agent service. Override this value if you want to install
+rhevm-guest-agent.
+Default value: ovirt-guest-agent
+
+    * service_enabled
+Boolen value for enabling or disabling ovirt-guest-agent service.
+Default value: true
+
+    * service_ensure
+Handles status of ovirt-guest-agent service. Can be running or stopped.
+Default value: running
+
+    * package_name
+Name of the ovirt-guest-agent package. Override this value if you want to install
+rhevm-guest-agent. The name differs on RedHat based systems and Debian based system.
+Class ::ovirt_guest_agent::params takes care of the right default values.
+Default value (RedHat): ovirt-guest-agent-common
+Default value (Debian): ovirt-guest-agent
+
+    * package_ensure
+Handles status of ovirt-guest-agent package. Can be installed or absent.
+Default value: installed
+
 ## Limitations
 
-See operatingsystem_support.
+See operatingsystem_support for list of supported operating systems.
+
+If you're using Debian 8, please note that there are 2 bugs in the ovirt-guest-agent package provided by jessie repository:
+    * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=811481
+    * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782005
+
+These bugs are fixed ini package of sid repository.
+
+
+If you're using Debian 7, please follow the instructions on how to add the required repository:
+https://software.opensuse.org/download.html?project=home%3Aevilissimo%3Adeb&package=ovirt-guest-agent
 
 ## Development
 

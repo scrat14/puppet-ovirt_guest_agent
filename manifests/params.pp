@@ -20,6 +20,10 @@ class ovirt_guest_agent::params {
       $service_name = 'ovirt-guest-agent'
       $package_name = 'ovirt-guest-agent-common'
     }
+    'Debian': {
+      $service_name = 'ovirt-guest-agent'
+      $package_name = 'ovirt-guest-agent'
+    }
     default: {
       fail("Unsupported guest operating system: ${os}")
     }
