@@ -47,7 +47,7 @@ class ovirt_guest_agent (
 
   $service_name    = $ovirt_guest_agent::params::service_name,
   $service_ensure  = $ovirt_guest_agent::params::service_ensure,
-  $service_enabled = $ovirt_guest_agent::params::service_enable,
+  $service_enabled = $ovirt_guest_agent::params::service_enabled,
   $package_name    = $ovirt_guest_agent::params::package_name,
   $package_ensure  = $ovirt_guest_agent::params::package_ensure
 

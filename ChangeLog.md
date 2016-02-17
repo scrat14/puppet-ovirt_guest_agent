@@ -1,3 +1,7 @@
+#### 0.1.2 - Wed Feb 17 2016
+* Fixed typo with $service_enabled variable
+* Readded puppetlabs/stdlib dependency as it is required for string/boolean checks
+
 #### 0.1.1 - Wed Feb 17 2016
 * Improved puppet quality score
 
