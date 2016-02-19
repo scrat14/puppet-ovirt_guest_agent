@@ -45,11 +45,21 @@
 
 class ovirt_guest_agent (
 
-  $service_name    = $ovirt_guest_agent::params::service_name,
-  $service_ensure  = $ovirt_guest_agent::params::service_ensure,
-  $service_enabled = $ovirt_guest_agent::params::service_enabled,
-  $package_name    = $ovirt_guest_agent::params::package_name,
-  $package_ensure  = $ovirt_guest_agent::params::package_ensure
+  $service_name            = $ovirt_guest_agent::params::service_name,
+  $service_ensure          = $ovirt_guest_agent::params::service_ensure,
+  $service_enabled         = $ovirt_guest_agent::params::service_enabled,
+  $package_name            = $ovirt_guest_agent::params::package_name,
+  $package_ensure          = $ovirt_guest_agent::params::package_ensure,
+  $config_file             = $ovirt_guest_agent::params::config_file,
+  $config_template         = $ovirt_guest_agent::params::config_template,
+  $heart_beat_rate         = $ovirt_guest_agent::params::heart_beat_rate,
+  $report_user_rate        = $ovirt_guest_agent::params::report_user_rate,
+  $report_num_cpu_rate     = $ovirt_guest_agent::params::report_num_cpu_rate,
+  $report_application_rate = $ovirt_guest_agent::params::report_application_rate,
+  $report_disk_usage       = $ovirt_guest_agent::params::report_disk_usage,
+  $applications_list       = $ovirt_guest_agent::params::applications_list,
+  $ignored_fs              = $ovirt_guest_agent::params::ignored_fs,
+  $ignore_zero_size_fs     = $ovirt_guest_agent::params::ignore_zero_size_fs,
 
 )inherits ovirt_guest_agent::params {
 
@@ -58,10 +68,21 @@ class ovirt_guest_agent (
   validate_bool($service_enabled)
   validate_string($package_name)
   validate_string($package_ensure)
+  validate_string($config_file)
+  validate_string($config_template)
+  if $heart_beat_rate { validate_integer($heart_beat_rate) }
+  if $report_user_rate { validate_integer($report_user_rate) }
+  if $report_num_cpu_rate { validate_integer($report_num_cpu_rate) }
+  if $report_application_rate { validate_integer($report_application_rate) }
+  if $report_disk_usage { validate_integer($report_disk_usage) }
+  validate_string($applications_list)
+  validate_string($ignored_fs)
+  validate_string($ignore_zero_size_fs)
 
   if $::manufacturer == 'oVirt' {
     anchor { 'ovirt_guest_agent::begin': } ->
     class { '::ovirt_guest_agent::package': } ->
+    class { '::ovirt_guest_agent::config': } ~>
     class { '::ovirt_guest_agent::service': } ->
     anchor { 'ovirt_guest_agent::end': }
   }else{

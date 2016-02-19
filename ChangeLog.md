@@ -1,3 +1,6 @@
+#### 0.3.0 - Fri Feb 19 2016
+* Added support for basic configuration of ovirt-guest-agent
+
 #### 0.2.0 - Wed Feb 17 2016
 * Added support for Debian 7 and 8
 
