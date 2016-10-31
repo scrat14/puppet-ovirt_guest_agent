@@ -79,14 +79,14 @@ class ovirt_guest_agent (
   validate_string($ignored_fs)
   validate_string($ignore_zero_size_fs)
 
-  if $::manufacturer == 'oVirt' {
+  if ($::manufacturer) == 'oVirt' or ($::productname == 'RHEV Hypervisor') {
     anchor { 'ovirt_guest_agent::begin': } ->
     class { '::ovirt_guest_agent::package': } ->
     class { '::ovirt_guest_agent::config': } ~>
     class { '::ovirt_guest_agent::service': } ->
     anchor { 'ovirt_guest_agent::end': }
   }else{
-    notice ('This system doesn\'t seem to run on oVirt - skipping installation')
+    notice ('This system doesn\'t seem to run on oVirt/RHEV - skipping installation')
   }
   
 }
