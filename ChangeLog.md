@@ -1,3 +1,6 @@
+#### 0.4.1 - Mon Oct 31 2016
+* Forgot to update Changelog in last release
+
 #### 0.4.0 - Mon Oct 31 2016
 * Added support for RHEV hypervisors
 * RH Common provides rhevm-guest-agent-common #1 (thanks jcpunk)

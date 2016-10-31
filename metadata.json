@@ -1,6 +1,6 @@
 {
   "name": "scrat14-ovirt_guest_agent",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Rene Koch",
   "summary": "Puppet module for managing ovirt-guest-agent",
   "license": "GPL-3.0",
