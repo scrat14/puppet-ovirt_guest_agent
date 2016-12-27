@@ -47,7 +47,7 @@ This module doesn't enable (possibly) repositories due to the following reasons:
 Spacewalk, Katello,...)
 * There are plenty of modules available for enabling repositories
 
-The following repositories are required:
+The following repositories are required (also see Limitations section below):
 
 * CentOS 6/7:
     * EPEL (https://fedoraproject.org/wiki/EPEL)
@@ -67,6 +67,15 @@ The following repositories are required:
 
 * Debian 7:
     * http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/
+
+* Ubuntu 12.04:
+    * http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/12.04/xUbuntu_12.04/
+
+* Ubuntu 14.04:
+    * http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/14.04/xUbuntu_14.04/
+
+* Ubuntu 14.04:
+    * http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/16.04/xUbuntu_16.04/
 
 ### Beginning with ovirt_guest_agent
 
@@ -157,6 +166,12 @@ These bugs are fixed ini package of sid repository.
 
 If you're using Debian 7, please follow the instructions on how to add the required repository:
 https://software.opensuse.org/download.html?project=home%3Aevilissimo%3Adeb&package=ovirt-guest-agent
+or
+
+https://www.ovirt.org/documentation/how-to/guest-agent/install-the-guest-agent-in-debian/
+
+If you're using Ubuntu, please follow the instructions on how to add the required repository:
+https://www.ovirt.org/documentation/how-to/guest-agent/install-the-guest-agent-in-ubuntu/
 
 ## Development
 
