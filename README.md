@@ -22,7 +22,7 @@ This module installs and configure ovirt-guest-agent.
 ovirt-guest-agent is a daemon that resides within guest virtual machines and is 
 required to supply information to the Virtualization Manager (such as oVirt-engine
 or Red Hat Enterprise Virtualization Manager) that is required to properly manage
-the virtual machines. 
+the virtual machines.
 
 This module installs ovirt-guest-agent-common (or rhevm-guest-agent-common), enables
 and starts the ovirt-guest-agent daemon.
@@ -66,21 +66,27 @@ The following repositories are required:
 
 include '::ovirt_guest_agent' will install the guest agent and enable it.
 
+```puppet
     class {'::ovirt_guest_agent': }
+```
 
 ## Usage
 
 Install ovirt-guest-agent with default configuration file:
 
+```puppet
     class {'::ovirt_guest_agent': }
+```
 
 Install rhevm-guest-agent instead of ovirt-guest-agent with default 
 configuration file:
 
+```puppet
     class {'::ovirt_guest_agent':
       service_name => 'rhevm-guest-agent'
       package_name => 'rhevm-guest-agent-common'
     }
+```
 
 ## Reference
 
