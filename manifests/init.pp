@@ -61,7 +61,7 @@ class ovirt_guest_agent (
   $ignored_fs              = $ovirt_guest_agent::params::ignored_fs,
   $ignore_zero_size_fs     = $ovirt_guest_agent::params::ignore_zero_size_fs,
 
-)inherits ovirt_guest_agent::params {
+) inherits ovirt_guest_agent::params {
 
   validate_string($service_name)
   validate_string($service_ensure)
@@ -85,8 +85,8 @@ class ovirt_guest_agent (
     class { '::ovirt_guest_agent::config': } ~>
     class { '::ovirt_guest_agent::service': } ->
     anchor { 'ovirt_guest_agent::end': }
-  }else{
+  } else {
     notice ('This system doesn\'t seem to run on oVirt - skipping installation')
   }
-  
+
 }
