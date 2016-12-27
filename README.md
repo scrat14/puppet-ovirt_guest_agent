@@ -48,26 +48,41 @@ Spacewalk, Katello,...)
 * There are plenty of modules available for enabling repositories
 
 The following repositories are required:
+
 * CentOS 6/7:
     * EPEL (https://fedoraproject.org/wiki/EPEL)
+
 * Red Hat Enterprise Linux 6/7 (ovirt-guest-agent):
     * EPEL (https://fedoraproject.org/wiki/EPEL)
+
 * Red Hat Enterprise Linux 6 (rhevm-guest-agent):
     * rhel-6-server-rhev-agent-rpms (subscription-manager) or
     * rhel-x86_64-rhev-agent-6-server (RHN classic)
+
 * Red Hat Enterprise Linux 7 (rhevm-guest-agent):
     * rhel-7-server-rh-common-rpms (subscription-manager)
+
 * Debian 8:
     * available in jessie repository, but see limitations!
+
 * Debian 7:
     * http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/
 
 ### Beginning with ovirt_guest_agent
 
-include '::ovirt_guest_agent' will install the guest agent and enable it.
+For mninimal usage try:
 
 ```puppet
-    class {'::ovirt_guest_agent': }
+    include '::ovirt_guest_agent'
+```
+ which will install the guest agent and enable it.
+
+To pass additional parameters try something like this:
+
+```puppet
+    class {'::ovirt_guest_agent':
+        report_disk_usage => 1,
+    }
 ```
 
 ## Usage
@@ -92,45 +107,50 @@ configuration file:
 
 ### Classes
 
-    * ovirt_guest_agent: This is the main class which includes all other classes.
-    * ovirt_guest_agent::service: Starts/stops and enables/disables ovirt-guest-agent daemon.
-    * ovirt_guest_agent::package: Installs/uninstalls ovirt-guest-agent package.
+* ovirt_guest_agent: This is the main class which includes all other classes.
+* ovirt_guest_agent::service: Starts/stops and enables/disables ovirt-guest-agent daemon.
+* ovirt_guest_agent::package: Installs/uninstalls ovirt-guest-agent package.
 
 ### Paramaters
 
 The following parameters are available in ::ovirt_guest_agent class:
 
-    * service_name
+#### `service_name`
 Name of the ovirt-guest-agent service. Override this value if you want to install
 rhevm-guest-agent.
-Default value: ovirt-guest-agent
+Default value: `ovirt-guest-agent`
 
-    * service_enabled
+#### `service_enabled`
+
 Boolen value for enabling or disabling ovirt-guest-agent service.
 Default value: true
 
-    * service_ensure
+#### `service_ensure`
+
 Handles status of ovirt-guest-agent service. Can be running or stopped.
 Default value: running
 
-    * package_name
+#### `package_name`
+
 Name of the ovirt-guest-agent package. Override this value if you want to install
 rhevm-guest-agent. The name differs on RedHat based systems and Debian based system.
 Class ::ovirt_guest_agent::params takes care of the right default values.
-Default value (RedHat): ovirt-guest-agent-common
-Default value (Debian): ovirt-guest-agent
+Default value (RedHat): `ovirt-guest-agent-common`
+Default value (Debian): `ovirt-guest-agent`
 
-    * package_ensure
+#### `package_ensure`
+
 Handles status of ovirt-guest-agent package. Can be installed or absent.
-Default value: installed
+Default value: `installed`
 
 ## Limitations
 
 See operatingsystem_support for list of supported operating systems.
 
 If you're using Debian 8, please note that there are 2 bugs in the ovirt-guest-agent package provided by jessie repository:
-    * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=811481
-    * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782005
+
+* https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=811481
+* https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782005
 
 These bugs are fixed ini package of sid repository.
 
