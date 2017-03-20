@@ -1,3 +1,6 @@
+#### 0.5 - Mon Mar 20 2017
+* Added support for Ubuntu #2 (thanks nvtkaszpir)
+
 #### 0.4.1 - Mon Oct 31 2016
 * Forgot to update Changelog in last release
 

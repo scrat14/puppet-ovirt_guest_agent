@@ -1,6 +1,6 @@
 {
   "name": "scrat14-ovirt_guest_agent",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "author": "Rene Koch",
   "summary": "Puppet module for managing ovirt-guest-agent",
   "license": "GPL-3.0",
@@ -28,6 +28,10 @@
     {
     "operatingsystem": "Debian",
     "lsbmajdistrelease": [ "7", "8" ]
+    },
+    {
+    "operatingsystem": "Ubuntu",
+    "lsbmajdistrelease": [ "12.04", "14.04", "16.04" ]
     }
   ]
 }
