@@ -23,10 +23,10 @@ class ovirt_guest_agent::params {
   $applications_list       = undef
   $ignored_fs              = undef
   $ignore_zero_size_fs     = undef
-  
+
   # package and service names may vary on different operating systems
   $os = $::operatingsystem
-  
+
   case $os {
     'Redhat': {
       $service_name = 'ovirt-guest-agent'
@@ -37,6 +37,10 @@ class ovirt_guest_agent::params {
       $package_name = 'ovirt-guest-agent-common'
     }
     'Debian': {
+      $service_name = 'ovirt-guest-agent'
+      $package_name = 'ovirt-guest-agent'
+    }
+    'Ubuntu': {
       $service_name = 'ovirt-guest-agent'
       $package_name = 'ovirt-guest-agent'
     }

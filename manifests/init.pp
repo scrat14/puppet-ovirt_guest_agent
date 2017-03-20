@@ -61,7 +61,7 @@ class ovirt_guest_agent (
   $ignored_fs              = $ovirt_guest_agent::params::ignored_fs,
   $ignore_zero_size_fs     = $ovirt_guest_agent::params::ignore_zero_size_fs,
 
-)inherits ovirt_guest_agent::params {
+) inherits ovirt_guest_agent::params {
 
   validate_string($service_name)
   validate_string($service_ensure)
@@ -88,5 +88,5 @@ class ovirt_guest_agent (
   }else{
     notice ('This system doesn\'t seem to run on oVirt/RHEV - skipping installation')
   }
-  
+
 }
