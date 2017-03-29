@@ -173,6 +173,12 @@ https://www.ovirt.org/documentation/how-to/guest-agent/install-the-guest-agent-i
 If you're using Ubuntu, please follow the instructions on how to add the required repository:
 https://www.ovirt.org/documentation/how-to/guest-agent/install-the-guest-agent-in-ubuntu/
 
+Users found an issue with package ovirt-guest-agent-common from EPEL in CentOS 7.3 where ownership of /dev/vport2p1
+is incorrect. This prevents ovirt-guest-agent from starting correctly. There's no fix for this in this puppet module
+as this issue has to be fixed in EPEL packages, but have a look at this documented workaround if you're facing the same
+problem: https://github.com/scrat14/puppet-ovirt_guest_agent/issues/4
+
+
 ## Development
 
 Fork this module on Github and send a pull request.
