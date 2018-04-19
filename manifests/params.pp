@@ -30,11 +30,18 @@ class ovirt_guest_agent::params {
   case $os {
     'Redhat': {
       $service_name = 'ovirt-guest-agent'
-      $package_name = 'rhevm-guest-agent-common'
+      $package_name = 'ovirt-guest-agent-common'
     }
     'CentOS', 'Scientific': {
       $service_name = 'ovirt-guest-agent'
-      $package_name = 'ovirt-guest-agent-common'
+      case $::operatingsystemmajrelease {
+        '5', '6': {
+          $package_name = 'ovirt-guest-agent'
+        }
+        default: {
+          $package_name = 'ovirt-guest-agent-common'
+        }
+      }
     }
     'Debian': {
       $service_name = 'ovirt-guest-agent'
